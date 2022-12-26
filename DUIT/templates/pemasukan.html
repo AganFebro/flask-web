@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<!-- Created By CodingNepal -->
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Catatan Keuangan</title>
+    <link rel="stylesheet" href="style_Main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+  </head>
+  <style>
+  table {
+    margin: auto;
+    font-family: "Lucida Sans Unicode", "Lucida Grande", "Segoe Ui";
+    font-size: 12px;
+    }
+    
+    h1 {
+    margin: 25px auto 0;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 17px;
+    }
+    
+    table td {
+    transition: all .5s;
+    }
+
+    /* Table */
+.data-table {
+	border-collapse: collapse;
+	font-size: 14px;
+	max-width: 600px;
+	}
+	
+	.data-table th,
+	.data-table td {
+	border: 1px solid #e1edff;
+	padding: 7px 13px;
+	}
+	.data-table caption {
+	margin: 7px;
+	}
+	
+	/* Table Header */
+	.data-table thead th {
+	background-color: #508abb;
+	color: #FFFFFF;
+	border-color: #6ea1cc !important;
+	text-transform: uppercase;
+	}
+	
+	/* Table Body */
+	.data-table tbody td {
+    background-color: #c7c7c7;
+	color: #353535;
+	}
+	.data-table tbody td:first-child,
+	.data-table tbody td:nth-child(4),
+	.data-table tbody td:last-child {
+    background-color: #c7c7c7;
+	text-align: left;
+	}
+	
+	.data-table tbody tr:nth-child(odd) td {
+	background-color: #f4fbff;
+	}
+	.data-table tbody tr:hover td {
+	background-color: #ffffa2;
+	border-color: #ffff0f;
+	}
+	
+	/* Table Footer */
+	.data-table tfoot th {
+	background-color: #e5f5ff;
+	text-align: right;
+	}
+	.data-table tfoot th:first-child {
+	text-align: left;
+	}
+	.data-table tbody td:empty
+	{
+	background-color: #ffcccc;
+	}
+  @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500');
+*{
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  text-decoration: none;
+}
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: #252525;
+}
+.sidebar{
+  left: 0px;
+  width: 250px;
+  height: 950px;
+  background: #1f1f1f;
+  float: left;
+}
+.sidebar header {
+  text-transform: capitalize;
+  font-size: 22px;
+  color: #FFD700;
+  line-height: 70px;
+  text-align: center;
+  background: #1f1f1f;
+  user-select: none;
+}
+.sidebar ul a{
+  display: block;
+  height: 100%;
+  width: 100%;
+  line-height: 50px;
+  font-size: 16px;
+  color: #FFD700;
+  padding-left: 40px;
+  box-sizing: border-box;
+  border-bottom: 1px solid black;
+  border-top: 1px solid rgba(255,255,255,.1);
+  transition: .4s;
+}
+ul li:hover a{
+  padding-left: 50px;
+}
+.sidebar ul a i{
+  margin-right: 16px;
+}
+h1{
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+article{
+  margin-left: 2%;
+  line-height: 2;
+  font-size: 16px;
+  color: #FFD700;
+  float: left;
+}
+section{
+  background: url(bg.jpeg) no-repeat;
+  background-color: #252525;
+  background-position: center;
+  background-size: cover;
+  height: 100vh;
+  transition: all .5s;
+  color: #FFD700;
+}
+  </style>
+  <body>
+    {% with messages = get_flashed_messages(with_categories=true) %} {% if
+      messages %} {% for category, message in messages %} {% if category ==
+      'error' %}
+      <div class="alert alert-danger alter-dismissable fade show" role="alert">
+        {{ message }}
+        <button type="button" class="close" data-dismiss="alert">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      {% else %}
+      <div class="alert alert-success alter-dismissable fade show" role="alert">
+        {{ message }}
+        <button type="button" class="close" data-dismiss="alert">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      {% endif %} {% endfor %} {% endif %} {% endwith %}
+        <div class="sidebar">
+          <header>Catatan Keuangan</header>
+          <ul>
+            <li><a href="/"><i class="fas fa-home"></i>Home</a></li>
+            <li><a href="/pemasukan"><i class="fas fa-stream"></i>Pemasukan</a></li>
+            <li><a href="/pengeluaran"><i class="bx bx-collection"></i>Pengeluaran</a></li>
+            <li><a href="/about"><i class="far fa-question-circle"></i>About</a></li>
+            <li><a href="/login"><i class="far fa-envelope"></i>Login</a></li>
+            <li><a href="/sign-up"><i class="far fa-envelope"></i>Sign Up</a></li>
+            <li><a href="/logout"><i class="far fa-envelope"></i>Logout</a></li>
+        </div>
+
+      <div class="home">
+        <section>
+          <article>
+            <h1 align="center">Tabel Pemasukan</h1>
+            <ul class="list-group list-group-flush" id="notes">
+              <li class="list-group-item">
+                <table id="table1" class="data-table" border="2">
+                  <tr>
+                    <th>Nama</th>
+                    <th>Jumlah</th>
+                    <th style="width:5%">Hapus</th>
+                  </tr>
+              {% for note in user.notes %}
+                  <tr>
+                      <td>{{ note.data }}</td>
+                      <td>{{ note.jumlah }}</td>
+                      <td>
+                        <button type="button" class="close" onClick="deleteNote({{ note.id }})">
+                          <span align="center" aria-hidden="true">&times;</span>
+                        </button>
+                      </td>
+                  </tr>
+              {% endfor %}
+            </li>
+            </table>
+            <span id="val"></span>
+            </ul>
+          </article>
+        </section>
+      </div>
+      <script
+      type="text/javascript"
+      src="{{ url_for('static', filename='hapus_pemasukan.js') }}"
+    ></script>
+    <script>
+            
+      var table = document.getElementById("table1"), sumVal = 0;
+      
+      for(var i = 1; i < table.rows.length; i++)
+      {
+          sumVal = sumVal + parseInt(table.rows[i].cells[1].innerHTML);
+      }
+      
+      document.getElementById("val").innerHTML = "Sum Value = " + sumVal;
+      console.log(sumVal);
+      
+  </script>
+  </body>
+</html>

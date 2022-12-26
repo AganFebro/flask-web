@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<!-- Created By CodingNepal -->
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Catatan Keuangan</title>
+    <link rel="stylesheet" href="style_Main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+  </head>
+  <style>
+    @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500');
+*{
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  text-decoration: none;
+}
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: #252525;
+}
+.sidebar{
+  left: 0px;
+  width: 250px;
+  height: 950px;
+  background: #1f1f1f;
+  float: left;
+}
+.sidebar header {
+  text-transform: capitalize;
+  font-size: 22px;
+  color: #FFD700;
+  line-height: 70px;
+  text-align: center;
+  background: #1f1f1f;
+  user-select: none;
+}
+.sidebar ul a{
+  display: block;
+  height: 100%;
+  width: 100%;
+  line-height: 50px;
+  font-size: 16px;
+  color: #FFD700;
+  padding-left: 40px;
+  box-sizing: border-box;
+  border-bottom: 1px solid black;
+  border-top: 1px solid rgba(255,255,255,.1);
+  transition: .4s;
+}
+ul li:hover a{
+  padding-left: 50px;
+}
+.sidebar ul a i{
+  margin-right: 16px;
+}
+h1{
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+article{
+  margin-left: 2%;
+  line-height: 2;
+  font-size: 16px;
+  color: #FFD700;
+  float: left;
+}
+section{
+  background: url(bg.jpeg) no-repeat;
+  background-color: #252525;
+  background-position: center;
+  background-size: cover;
+  height: 100vh;
+  transition: all .5s;
+  color: #FFD700;
+}
+  </style>
+  <body>
+        <div class="sidebar">
+          <header>Catatan Keuangan</header>
+          <ul>
+            <li><a href="/"><i class="fas fa-home"></i>Home</a></li>
+            <li><a href="/pemasukan"><i class="fas fa-stream"></i>Pemasukan</a></li>
+            <li><a href="/pengeluaran"><i class="bx bx-collection"></i>Pengeluaran</a></li>
+            <li><a href="/about"><i class="far fa-question-circle"></i>About</a></li>
+            <li><a href="/login"><i class="far fa-envelope"></i>Login</a></li>
+            <li><a href="/sign-up"><i class="far fa-envelope"></i>Sign Up</a></li>
+            <li><a href="/logout"><i class="far fa-envelope"></i>Logout</a></li>
+        </div>
+
+      <div class="home">
+        <section>
+          <article>
+            <h1>
+              About
+            </h1>
+              Matkul Inggris taek
+          </article>
+        </section>
+      </div>
+  </body>
+</html>
