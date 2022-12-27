@@ -8,8 +8,6 @@
     <title>{% block title %}Home{% endblock %}</title>
   </head>
   <body>
-
-
     {% with messages = get_flashed_messages(with_categories=true) %} {% if
     messages %} {% for category, message in messages %} {% if category ==
     'error' %}
@@ -50,7 +48,6 @@
       src="{{ url_for('static', filename='index.js') }}"
     ></script>
     {% block styles %}
-    <link rel="stylesheet" href="style.css">
     {% endblock %}
   </body>
 </html>

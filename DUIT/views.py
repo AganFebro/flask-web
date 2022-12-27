@@ -8,10 +8,14 @@ import json
 
 views = Blueprint('views', __name__)
 
-
-@views.route('/', methods=['GET', 'POST'])
+@views.route('/')
 @login_required
 def home():
+    return render_template("home.html", user=current_user)
+
+@views.route('/pemasukan', methods=['GET', 'POST'])
+@login_required
+def pemasukan_input():
     if request.method == 'POST':
         note = request.form.get('note')
         jumlah = request.form.get('jumlah')
@@ -19,9 +23,9 @@ def home():
         new_note = Note(data=note, jumlah=jumlah, user_id=current_user.id)
         db.session.add(new_note)
         db.session.commit()
-        flash('Note added!', category='success')
+        flash('Data pemasukan ditambahkan!', category='success')
 
-    return render_template("home.html", user=current_user)
+    return render_template("pemasukan.html", user=current_user)
 
 @views.route('/pengeluaran', methods=['GET', 'POST'])
 @login_required
@@ -33,7 +37,7 @@ def pengeluaran_input():
         new_note1 = Note1(data1=note1, jumlah1=jumlah1, user_id1=current_user.id)
         db.session.add(new_note1)
         db.session.commit()
-        flash('Note added!', category='success')
+        flash('Data pengeluaran ditambahkan!', category='success')
 
     return render_template("pengeluaran.html", user=current_user)
 
@@ -75,3 +79,8 @@ def pengeluaran():
 @login_required
 def pemasukan():
     return render_template("pemasukan.html", user=current_user)
+
+@views.route('/profile')
+@login_required
+def profile():
+    return render_template("profile.html", user=current_user)
