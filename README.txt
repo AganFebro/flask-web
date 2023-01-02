@@ -25,7 +25,7 @@ Error? fix sendiri mas bro!
 
 12. cp flask.conf /etc/apache2/sites-available/
 
-13. nano /etc/apache2/sites-available/
+13. nano /etc/apache2/sites-available/flask.conf
 #Bagian ServerName isi IP VPS mu! Lalu save (Ctrl+O) dan exit (Ctrl+X)
 
 14. a2ensite flask.conf
