@@ -5,6 +5,13 @@
   text-decoration: none;
 }
 
+@media print {
+    .hidden-print, .no-print * {
+      visibility: hidden;
+      display: none !important;
+    }
+}
+
 :root {
   --bg-utama: #0c0e12;
   --bg-kedua: #262626;
@@ -21,6 +28,7 @@ body {
 .home{
   text-align: justify;
   margin-left: 210px;
+  margin-right: 10px;
 }
 
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap');
@@ -30,6 +38,15 @@ body {
   float: left;
   width: 100%;
   position: relative;
+}
+
+/* Menu */
+.menu-btn{
+  display: none;
+}
+
+.side-btn{
+  display: none;
 }
 
 
@@ -44,66 +61,59 @@ body {
   margin-right: -100%;
   z-index: 160;
   min-height: 100px;
+  transition: .9s;
 }
 
 .sidebar{
   background-color: var(--bg-kedua);
   width: 200px;
+  left: 0;
+  top: 0;
   list-style: none;
   list-style-position: initial;
   list-style-image: initial;
   list-style-type: none;
   margin-top: 40px;
   min-height: 100px;
-  border-radius: 0 25px 25px 0;
+  border-radius: 10px 10px 10px 10px;
+  overflow-y: auto;
+  transition: .9s;
 } 
   
 .sidebar header {
-  text-transform:capitalize;
-  font-size: 30px;
+  text-transform: capitalize;
+  font-size: 25px;
   color: var(--bg-utama);
-  line-height: 30px;
-  text-align: justify;
-  background: var(--bg-kedua);
+  line-height: 25px;
+  text-align: center;
   user-select: none;
-  padding: 5px 10px 5px 10px;
+  padding: 10px 10px 10px 10px;
   margin-bottom: 20px;
   background-color: var(--kuning);
-  border-radius: 0 25px 0px 0;
+  border-radius: 10px 10px 10px 10px;
 }
 
-.sidemenu a{
+.sidebar .sidemenu .item{
+  position: relative;
+  cursor: pointer;
+}
+
+.item a{
    text-decoration: none;
    line-height: 40px;
    font-size: 18px;
    color: var(--font-kuning);
    padding-left: 25px;
    transition: .6s;
+   display: block;
 }
 
-.sidemenu .last-menu{
- color: pink;
+.item a:hover{
+  padding-left: 35px;
 }
 
-.menu .icon{
-  padding-bottom: 5px;
-  font-size: 25px;
-  margin-bottom: 10px;
-  transition: .6s;
-}
-
-.menu a{
-  font-size: 20px;
-  color: var(--bg-kedua);
-  border-radius: 0 0px 25px 0;
-  transition: .6s;
-}
-
-
-
-li:hover a{
-  border-radius: 0 0px 0px 0;
-  font-size: 120%;
+.last-menu{
+ margin-bottom: 180px;
 }
 
 .icon{
@@ -111,58 +121,94 @@ li:hover a{
   margin-bottom: 15px;
 }
 
-.menu{
+
+.sidebar .item .sub-btn{
+  user-select: none;
+  text-transform:capitalize;
+  font-size: 22px;
+  color: var(--bg-utama);
+  line-height: 30px;
+  text-align: justify;
+  padding: 10px 0px 0px 25px;
   background-color: var(--kuning);
-  position: relative;
 }
 
-.menu-list:hover{
-  margin-left: 0px;
+.sidebar .item a .dropdown{
+  font-size: 20px;
+  position: absolute;
+  right: 25px;
+  margin: 5px;
+  transition: 0.5s ease;
 }
 
-.menu-list{
-  transition: .6s;
+.sidebar .item .sub-menu{
+  margin-bottom: 25px;
   display: none;
-  min-width: 200px;
 }
 
-.menu-list a {
-  background: none;
-  color: var(--bg-kedua);
-  padding: 5px;
-  text-decoration: none;
-  margin-left: 25px;
-  transition: .6s;
+#page-sidebar.sidebar-hp{
+  left: 0;
 }
 
-.menu:hover .menu-list {
-  position: relative;
-  display: inline-block;
-  padding-bottom: 15px;
+.sidebar.sidebar-alpha{
+  opacity: 80%;
 }
 
+.sub-item{
+  margin-top: 5px;
+}
 
+.rotate{
+  transform: rotate(90deg);
+}
 
 /* Notifikasi */
-.alert{
+.alert {
+  text-align: center;
+  font-weight: bolder;
   position: absolute;
-  float: left;
-  margin-right: 12px;
-  height: 20px;
-  font-size: 16px;
-  color: var(--font-kuning);
-  background-color: var(--bg-kedua);
+  font-size: 14px;
+  padding: 10px;
+  display: block;
+  right: 10px;
+  width: 40vh;
+  transition: .5s;
+  border: none;
+  background: var(--kuning);
+  transition: .5s;
+  top: 5px;
 }
 
+.alert .close{
+  scale: 200%;
+  font-weight: bold;
+  text-align: center;
+  margin-left: 25px;
+  background: none;
+  border: none;
+  color: var(--bg-utama);
+}
 
+.hilang{
+  transition: .9s;
+  right: -100%;
+}
 
+.hp-close{
+  transition: .9s;
+  opacity: 0;
+}
 
 /* Kolom inputan */
+.inputan{
+  width: 100%;
+}
+
 .inputan h1{
   font-weight: bolder;
   color: var(--font-kuning);
   text-align: center;
-  margin-top: 5vh;
+  margin-top: 10vh;
   margin-bottom: 5vh;
 }
 
@@ -204,8 +250,28 @@ li:hover a{
   display: block;
   margin: 0 auto;
   margin-bottom: 5%;
-  padding: 5px 5px;
+  padding: 10px;
   transition: .5s;
+  border: none;
+}
+.page-table{
+  margin-left: 10%;
+  margin-right: 10%;
+  justify-content: center;
+  align-items: center;
+  color: var(--font-kuning);
+}
+#btnPrint{
+  font-weight: bolder;
+  font-size: 16px;
+  background: var(--kuning);
+  color:var(--bg-kedua);
+  display: block;
+  margin: 0 auto;
+  margin-top: 5%;
+  padding: 10px;
+  transition: .5s;
+  border: none;
 }
 
 button:hover{
@@ -230,18 +296,22 @@ button:hover{
 }
 
 .page-table{
-  text-align: center;
+  margin-left: 10%;
+  margin-right: 10%;
+  justify-content: center;
+  align-items: center;
+  color: var(--font-kuning);
 }
 
 .note1{
   color: var(--font-kuning);
 }
 
-.page-table{
-  color: var(--font-kuning);
+.data-table{
+  margin-bottom: 25px;
 }
 
-.close{
+.page-table .close {
   font-weight: bolder;
   font-size: 30px;
   border: none;
@@ -253,6 +323,7 @@ button:hover{
   transition: .5s;
 }
 
+
 /* Mata uang rupiah */
 .rupiah::before{
   content: "Rp ";
@@ -260,18 +331,43 @@ button:hover{
 
 
 
+/* max-height: 100px;
+  width: 50%;
+  
+  justify-content: center;
+  align-items: center;
+  display: table-cell;
+   */
 
 /* About */
 .avatar1{   
-  margin-top: 25px;
-  margin-bottom: 25px;
-  margin-left: 150px;
-  margin-right: 150px;
+  width: 250px;
+  max-width: 100%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  margin: 15px;
+  margin-bottom: 50px;
+  margin-left: 50px;
 }
 
 .avatar1 img{
-  height: 80px;
-  width: 80px;
+  margin-right: 15px;
+  float: none;
+  height: 50px;
+  width: auto;
+}
+
+.about-group h3{
+  text-align: center;
+  margin-top: 100px;
+  font-size: 25px;
+}
+
+.about-group{
+  color: var(--font-kuning);
+  margin-top: 25px;
+  font-size: 14px;
 }
 
 .account-avatar{
@@ -292,73 +388,44 @@ button:hover{
   width: 50px;
 }
 
-.about-item h3{
-  margin-top: 100px;
-  margin-left: 25%;
-  margin-right: 25%;
-  font-size: 30px;
+
+.kata{
+  width: 50%;
+  border: 2px solid var(--kuning);
+  padding: 32px;
+  margin: 25px;
+  box-shadow: 15px 15px 1px var(--kuning);
 }
 
-.about-item{
-  margin-left: 20%;
-  margin-right: 20%;
+.kata-kata{
+  margin-top: 60px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
   color: var(--font-kuning);
 }
-
-.kata1{
-  position: absolute;
-  float: left;
-  margin: 50px 250px;
-  padding: 20px;
-  color: var(--font-putih);
-  background-color: var(--bg-kedua);
-  width: 300px;
-  border: 2px solid var(--kuning);
-  box-shadow: 15px 15px 1px var(--kuning);
-}
-
-.kata2{
-  position: absolute;
-  float: left;
-  margin: 50px 750px;
-  padding: 20px;
-  color: var(--font-putih);
-  background-color: var(--bg-kedua);
-  width: 300px;
-  border: 2px solid var(--kuning);
-  box-shadow: 15px 15px 1px var(--kuning);
-}
-
-.kata3{
-  position: absolute;
-  float: left;
-  margin: 450px 750px;;
-  padding: 20px;
-  color: var(--font-putih);
-  background-color: var(--bg-kedua);
-  width: 300px;
-  border: 2px solid var(--kuning);
-  box-shadow: 15px 15px 1px var(--kuning);
-}
-
 
 /* Profile */
 
 .profile{
   text-align: left;
-  font-size: 18px;
-  margin: 100px 0 0 100px;
+  font-size: 16px;
+  margin: 100px 0 0 25%;
   color: var(--font-kuning);
 }
 
-.user-avatar{
-  margin: center;
+.user-avatar img{
+  margin-top: 35px;
+  width: 80px;
 }
+
 .user-email::before{
   content: "Email : ";
 }
 .user-email{
- margin-top: 200px;
+ margin-top: 30px;
 }
 
 .user-name{
@@ -369,3 +436,45 @@ button:hover{
 .user-name::before{
   content: "Username : ";
 }
+
+
+
+@media screen and (max-width: 600px) {
+  .kata {
+    width: 60%;
+    font-size: 12px;
+  }
+  #page-sidebar{
+    left: -100%;
+  }
+  .home{
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+  .menu-btn{
+    left: 0;
+    display: block;
+    color: var(--kuning);
+    position: absolute;
+    font-size: 20px;
+    margin: 15px;
+    cursor: pointer;
+    padding: 2px 5px 2px 5px;
+    border: solid var(--kuning);
+    border-radius: 5px;
+  }
+
+  .page-table{
+    font-size: 14px;
+  }
+
+  .side-btn{
+    display: block;
+    position: absolute;
+    color: var(--kuning);
+    font-size: 30px;
+    left: 220px;
+    top: 25px;
+  }
+}
+

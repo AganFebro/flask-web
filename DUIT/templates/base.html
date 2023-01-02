@@ -2,10 +2,10 @@
 <html>
   <head>
     <meta charset="utf-8" />
+    <link rel="icon" href="/static/img/ava.ico">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style_Main.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style_login.css') }}">
 
-    <title>{% block title %}Home{% endblock %}</title>
   </head>
   <body>
     {% with messages = get_flashed_messages(with_categories=true) %} {% if

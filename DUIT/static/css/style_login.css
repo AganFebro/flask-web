@@ -8,6 +8,14 @@
         font-family: 'Poppins', sans-serif;
       }
       
+      :root {
+        --bg-utama: #0c0e12;
+        --bg-kedua: #262626;
+        --kuning: #f8cf32;
+        --font-kuning: #f8cf32;
+        --font-putih: #f2f2f2;
+      }
+      
       .container{
         position: absolute;
         top: 50%;
@@ -17,10 +25,10 @@
         width: 100%;
         background: #262626;
         border: 2px solid;
-        border-color: #f8cf32;
+        border-color: var(--kuning);
         color: #ffffff;
         text-shadow: 0 0px 15px #0C0E12;
-        box-shadow: 15px 15px 1px #f8cf32;
+        box-shadow: 15px 15px 1px var(--kuning);
       }
 
       .container{
@@ -33,7 +41,7 @@
         0%   { top: 50%;opacity: 1;}
         60%  { opacity: 0;}
         100% { top: 70%; opacity: 0;}
-        50% { box-shadow: 0px 0px 0px #f8cf32;}
+        50% { box-shadow: 0px 0px 0px  var(--kuning);}
       }
       
       .container .registration{
@@ -78,10 +86,10 @@
          padding: 0 15px;
          font-size: 17px;
          margin-bottom: 0.2rem;
-         border: 2px solid #f8cf32;
+         border: 2px solid var(--kuning);
          outline: none;
          background-color: #2e2e2e;
-         color: #f8cf32;
+         color: var(--font-kuning);
        }
 
        .form input:focus{
@@ -172,6 +180,9 @@
        transition: 0.2s all ease-in-out;
      }
 
+     .alert-danger{
+      background-color: var(--kuning);
+     }
 
 
       

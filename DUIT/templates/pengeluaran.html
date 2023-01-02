@@ -5,21 +5,28 @@
 <head>
   <meta charset="utf-8">
   <title>Pengeluaran</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/style_Main.css') }}">
+  <link rel="icon" href="/static/img/ava.ico">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style_Main.css') }}" media="screen, print">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
   <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
   <script src="https://kit.fontawesome.com/ab35245f27.js" crossorigin="anonymous"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
   <script type="text/javascript">
     $("#btnPrint").live("click", function () {
-      var divContents = $("#dvContainer").html();
+      var divContents = $("#notes").html();
       var printWindow = window.open('', '', 'height=400,width=800');
       printWindow.document.write('<link rel="stylesheet" href="/static/css/table.css" />');
+      printWindow.document.write('</head><body >');
       printWindow.document.write(divContents);
+      printWindow.document.write('</head><body >');
+      printWindow.document.write("<style> th:nth-child(4){display:none;} </style>");
+      printWindow.document.write("<style> td:nth-child(4){display:none;} </style>");
+      printWindow.document.write("<style> btnPrint{display:none;} </style>");
       printWindow.document.close();
       printWindow.print();
     });
@@ -28,22 +35,26 @@
 
 <body>
   <div class="wrapper">
+    <div class="menu-btn">
+      <i class="fas fa-bars"></i>
+    </div>
     <div id="page-sidebar">
-
+      <div class="side-btn">
+        <i class="fas fa-times"></i>
+      </div>
       <div class="sidebar">
-        <header>Catatan Keuangan</header>
+        <header>Pengeluaran</header>
         <div class="sidemenu">
-          <li><a href="/"><i class="fas fa-home icon"></i>Home</a></li>
-          <li><a href="/pemasukan"><i class="fa-solid fa-hand-holding-dollar icon"></i>Pemasukan</a></li>
-          <li><a href="/pengeluaran"><i class="fa-solid fa-cart-shopping icon"></i>Pengeluaran</a></li>
-          <li><a href="/about"><i class="fa-regular fa-circle-question icon"></i>About</a></li>
-          
-          
-          <div class="menu">
-            <li><a href=""><i class="fa-solid fa-bars icon"></i>Menu</a></li>
-            <div class="menu-list">
-              <li><a href="/profile">Account</a></li>
-              <li><a href="/logout">Sign Out</a></li>
+          <div class="item"><a href="/"><i class="fas fa-home icon"></i>Home</a></div>
+          <div class="item"><a href="/pemasukan"><i class="fa-solid fa-hand-holding-dollar icon"></i>Pemasukan</a></div>
+          <div class="item"><a href="/pengeluaran"><i class="fa-solid fa-cart-shopping icon"></i>Pengeluaran</a></div>
+          <div class="last-menu item"><a href="/about"><i class="fa-regular fa-circle-question icon"></i>About</a></div>
+          <div class="item">
+            <a class="sub-btn"><i class="fa-solid fa-bars icon"></i>Menu<i class="fas fa-angle-right dropdown"></i></a>
+            <div class="sub-menu">
+              <li><a href="/profile" class="sub-item"><i class="fa-solid fa-user icon"></i> Account</a></li>
+              <li><a href="/logout" class="sub-item"><i class="fa-solid fa-right-from-bracket icon"></i> Log Out</a>
+              </li>
             </div>
           </div>
         </div>
@@ -54,14 +65,14 @@
       {% with messages = get_flashed_messages(with_categories=true) %} {% if
       messages %} {% for category, message in messages %} {% if category ==
       'error' %}
-      <div class="alert alert-danger alter-dismissable fade show" role="alert">
+      <div class="alert" role="alert">
         {{ message }}
         <button type="button" class="close" data-dismiss="alert">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       {% else %}
-      <div class="alert alert-success alter-dismissable fade show" role="alert">
+      <div class="alert" role="alert">
         {{ message }}
         <button type="button" class="close" data-dismiss="alert">
           <span aria-hidden="true">&times;</span>
@@ -119,8 +130,8 @@
           </li>
           </table>
           <span id="val"></span>
-          <input type="button" value="Print Div Contents" id="btnPrint" />
       </div>
+      <input class="no-print" type="button" value="Print Pengeluaran" id="btnPrint" />
     </div>
   </div>
   <script type="text/javascript" src="{{ url_for('static', filename='hapus_pengeluaran.js') }}"></script>
@@ -136,6 +147,37 @@
     console.log(sumVal);
 
   </script>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    //jquery for toggle sub menus
+    $('.sub-btn').click(function() {
+      $(this).next('.sub-menu').slideToggle();
+      $(this).find('.dropdown').toggleClass('rotate');
+    });
+
+    $('.menu-btn').click(function () {
+      $('#page-sidebar').addClass('sidebar-hp');
+      $('.sidebar').addClass('sidebar-alpha');
+      $('.menu-btn').addClass('hp-close');
+    });
+
+    $('.side-btn').click(function () {
+      $('#page-sidebar').removeClass('sidebar-hp');
+      $('.menu-btn').removeClass('hp-close');
+    });
+    $('.side-btn').click(function () {
+          $('#page-sidebar').removeClass('sidebar-hp');
+        });
+  });
+</script>
+
+<script
+src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+crossorigin="anonymous"
+></script>
+
 </body>
 
 </html>

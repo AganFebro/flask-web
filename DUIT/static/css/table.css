@@ -4,6 +4,13 @@ table {
     font-size: 12px;
   }
 
+  @media print {
+    .no-print, .no-print * {
+      visibility: hidden;
+      display: none !important;
+    }
+}
+
   h1 {
     margin: 25px auto 0;
     text-align: center;
