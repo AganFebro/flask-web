@@ -1,5 +1,5 @@
 Tested using Ubuntu 20.04.
-Error? fix sendiri mas bro!
+
 
 1. apt install apache2
 
