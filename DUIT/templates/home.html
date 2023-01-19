@@ -17,7 +17,6 @@
 </head>
 
 
-
 <body>
   <div class="wrapper">
     <div class="menu-btn">
@@ -46,8 +45,9 @@
         </div>
       </div>
     </div>
-
     <div class="home">
+      <p id="saldo"></p>
+
       {% with messages = get_flashed_messages(with_categories=true) %} {% if
       messages %} {% for category, message in messages %} {% if category ==
       'error' %}
@@ -86,10 +86,21 @@
     </div>
   </div>
 
+  <script>
+    var sumVal = localStorage.getItem("sumVal");
+    var sumVal2 = localStorage.getItem("sumVal2");
+    var saldo = sumVal - sumVal2;
+    var saldoRp = saldo.toLocaleString('id-ID', { style: 'currency', currency: 'IDR' });
+    var saldoRpClean = saldoRp.replace(/,/g, "").slice(0, -2);
+    document.getElementById("saldo").innerHTML = "Saldo : " + saldoRpClean;
+  </script>
+
+
+
   <script type="text/javascript">
-    $(document).ready(function(){
+    $(document).ready(function () {
       //jquery for toggle sub menus
-      $('.sub-btn').click(function() {
+      $('.sub-btn').click(function () {
         $(this).next('.sub-menu').slideToggle();
         $(this).find('.dropdown').toggleClass('rotate');
       });
@@ -107,11 +118,9 @@
 
     });
   </script>
-    <script
-    src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
     integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-    crossorigin="anonymous"
-  ></script>
+    crossorigin="anonymous"></script>
 
 </body>
 

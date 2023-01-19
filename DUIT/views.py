@@ -5,6 +5,7 @@ from flask_login import login_required, current_user
 from .models import Note, Note1
 from . import db
 import json
+from flask import url_for,redirect #Tambahan
 
 views = Blueprint('views', __name__)
 
@@ -19,11 +20,11 @@ def pemasukan_input():
     if request.method == 'POST':
         note = request.form.get('note')
         jumlah = request.form.get('jumlah')
-
         new_note = Note(data=note, jumlah=jumlah, user_id=current_user.id)
         db.session.add(new_note)
         db.session.commit()
         flash('Data pemasukan ditambahkan!', category='success')
+        return redirect(url_for('views.pemasukan_input'))
 
     return render_template("pemasukan.html", user=current_user)
 
@@ -38,6 +39,7 @@ def pengeluaran_input():
         db.session.add(new_note1)
         db.session.commit()
         flash('Data pengeluaran ditambahkan!', category='success')
+        return redirect(url_for('views.pengeluaran_input'))
 
     return render_template("pengeluaran.html", user=current_user)
 

@@ -6,11 +6,11 @@ from sqlalchemy.sql import func
 class Note(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     data = db.Column(db.String(10000))
-    data2 = db.Column(db.String(10000))
     jumlah = db.Column(db.Integer())
-    jumlah2 = db.Column(db.Integer())
     date = db.Column(db.DateTime(timezone=True), default=func.now())
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+
+
 
 class Note1(db.Model):
     id = db.Column(db.Integer, primary_key=True)
